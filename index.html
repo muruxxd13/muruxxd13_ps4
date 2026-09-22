@@ -120,6 +120,9 @@
     var ac = window.applicationCache;
     if (!ac || !document.documentElement.hasAttribute("manifest")) {
         go();
+    } else if (ac.status === ac.UNCACHED && navigator.onLine) {
+        setCache("installing offline cache...");
+        location.replace("cache.html");
     } else if (!navigator.onLine) {
         setCache("offline -- from cache", true);
         go();
@@ -141,13 +144,12 @@
         }, false);
         ac.addEventListener("cached", function () {
             setCache("Offline Use", true);
-            waitForTap("CACHED (First Run) -- Start", go);
+            setTimeout(go, 500);
         }, false);
         ac.addEventListener("updateready", function () {
             try { ac.swapCache(); } catch (e) {}
             setCache("update downloaded", true);
-            waitForTap("UPDATE READY -- press X or tap to reload & run",
-                       function () { location.reload(); });
+            setTimeout(function () { location.reload(); }, 500);
         }, false);
         ac.addEventListener("noupdate", function () {
             setCache("cached -- offline ready", true);
