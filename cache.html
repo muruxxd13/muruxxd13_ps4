@@ -50,7 +50,12 @@ body {
 // Swap the visible URL to index.html without navigating -- so when the
 // AppCache-completion handler below calls location.reload(), the reload
 // actually hits index.html (the exploit page), not this page.
-history.replaceState(null, null, 'cache.html');
+history.replaceState(null, null, 'index.html');
+
+// Collapse the tab history so back-button behaviour is clean and WebKit
+// isn't holding references to an earlier navigation state.
+var histlength = history.length;
+try { history.go(-histlength); } catch (e) {}
 
 function DLProgress(e) {
     var msgs = document.getElementById("msgs");
