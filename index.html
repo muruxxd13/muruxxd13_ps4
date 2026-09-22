@@ -120,6 +120,9 @@
     var ac = window.applicationCache;
     if (!ac || !document.documentElement.hasAttribute("manifest")) {
         go();
+    } else if (ac.status === ac.UNCACHED) {
+        setCache("Installing offline cache...");
+        location.replace("cache.html");
     } else if (!navigator.onLine) {
         setCache("offline -- from cache", true);
         go();
