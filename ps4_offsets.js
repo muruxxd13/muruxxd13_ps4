@@ -535,7 +535,7 @@ PS4["13.50"] = {
   k_prison0: 0x1a5c0c0,
   k_rootvnode: 0x2136e90,
   kpatch: "1350.bin", // BUILT (anchored in kernel_1350.elf); kpatch.js 10/10, both neg controls refuse; UNTESTED on hw
-  payload: "hen.bin", // Scene-Collective PS4HEN 2.2.0; kpayload covers 13.02/04/50/52 via get_offsets_for_fw()
+  payload: "goldhen.bin", // GoldHEN v2.4b18.12 supports 13.02/04/50/52
 };
 
 PS4["13.52"] = Object.assign({}, PS4["13.50"], {
@@ -591,7 +591,7 @@ PS4["13.02"] = Object.assign({}, PS4["13.00"], {
   k_prison0: 0x1a5c0c0,
   k_rootvnode: 0x2136e90,
   kpatch: "1302.bin", // ported from 1300.c, 18 sites +0x10; HW-PROVEN on 13.02 (KEXEC rc=0, pass=51)
-  payload: "hen.bin", // Scene-Collective PS4HEN 2.2.0; kpayload picks 13.02 table at runtime
+  payload: "goldhen.bin", // GoldHEN v2.4b18.12 supports 13.02/04/50/52
   fw_status:
     "state=663-JB+KPATCH-PROVEN-on-hw-pass=51 shares=13.00 (webkit+libkernel, PRIMITIVE-OK) " +
     "kernel_rvas=MEASURED-from-kernel_1302.elf (16/16 GO) same-kernel-as=13.04 " +
@@ -618,7 +618,7 @@ PS4["13.04"] = Object.assign({}, PS4["13.00"], {
   k_prison0: 0x1a5c0c0,
   k_rootvnode: 0x2136e90,
   kpatch: "1302.bin", // SAME kernel as 13.02 -> reuses the one blob (HW-PROVEN on 13.02)
-  payload: "hen.bin", // Scene-Collective PS4HEN 2.2.0; kpayload picks 13.04 table at runtime
+  payload: "goldhen.bin", // GoldHEN v2.4b18.12 supports 13.02/04/50/52
   fw_status:
     "state=663-JB+KPATCH-via-13.02(pass=51) shares=13.00 (webkit+libkernel, PRIMITIVE-OK) " +
     "kernel_rvas=SAME-KERNEL-AS-13.02 (measured from kernel_1302.elf, 16/16 GO) " +
