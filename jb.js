@@ -3126,14 +3126,10 @@ let allDone = false,
               mark("JB-TDUCRED-THREW", (e6 && e6.message) || String(e6));
             }
 
-            // If the main payload started, immediately chain-load ps4debug
-            // into the same WebKit process using the still-armed primitives.
-            // No user prompt / no long await -- we run this straight through
-            // so the primed-exploit window stays as tight as raw13g's
-            // vanilla flow (1-2 s of extra syscalls vs the ~90 s user-wait
-            // an earlier button-based version added). Opt out with
-            // ?ps4debug=0 in the URL.
-            if (payloadRunning && params.get("ps4debug") !== "0") {
+            // Keep the optional debug payload disabled during normal GoldHEN
+            // runs. It can destabilize the console after the main payload.
+            // Enable explicitly with ?ps4debug=1 when it is required.
+            if (payloadRunning && params.get("ps4debug") === "1") {
               try {
                 const r = await fetch("ps4debug.bin", { cache: "reload" });
                 if (!r.ok) throw new Error("HTTP " + r.status);
